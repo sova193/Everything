@@ -1,0 +1,32 @@
+{% extends 'flatpages/default.html' %}
+
+<html>
+<head>
+<title>{% block title %}Отзыв{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+    <h1 style="text-align: center;">Отзыв</h1>
+    <hr>
+        <table rules="all">
+            <tr>
+                <td><h2><strong>Текст</strong></h2></td>
+                <td></td>
+                <td><h2><strong>Автор</strong></h2></td>
+            </tr>
+            <tr>
+                <td>{{ feedback.body_feedback }}</td>
+                <td></td>
+                <td>{{ feedback.author }}</td>
+            </tr>
+        </table>
+    <br>
+    <br>
+    <a href="{% url 'feedback_delete' feedback.id %}" target="_blank">Удалить отзыв</a>
+    <br>
+    <br>
+    <a href="{% url 'feed_accept' %}" target="_blank">Принять отзыв</a>
+    <br>
+{% endblock content %}
+</body>
+</html>

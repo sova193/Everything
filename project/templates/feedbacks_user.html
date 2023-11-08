@@ -1,0 +1,45 @@
+{% extends 'flatpages/default.html' %}
+
+<html>
+<head>
+<title>{% block title %}Отзывы{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+    <h1 style="text-align: center;">Отзывы на объявление</h1>
+    <hr>
+        <table rules="all">
+            <tr>
+                <td><h2><strong>Текст</strong></h2></td>
+                <td></td>
+                <td><h2><strong>Автор</strong></h2></td>
+                <td></td>
+            </tr>
+            {% for feed in feedbacks_user %}
+            <tr>
+                <td><a href="{% url 'feedback' feed.id %}" target="_blank">{{ feed.body_feedback }}</a></td>
+                <td></td>
+                <td>{{ feed.author }}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </table>
+    <br>
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+   {{ page_obj.number }}
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+{% endblock content %}
+</body>
+</html>

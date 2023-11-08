@@ -1,0 +1,38 @@
+{% extends 'flatpages/default.html' %}
+
+<html>
+<head>
+<title>{% block title %}Объявление{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+    <h1 style="text-align: center;">Моё объявление</h1>
+    <hr>
+        <table rules="all">
+            <tr>
+                <td><h2><strong>Заголовок</strong></h2></td>
+                <td></td>
+                <td><h2><strong>Текст</strong></h2></td>
+                <td></td>
+                <td><h2><strong>Автор</strong></h2></td>
+            </tr>
+            <tr>
+                <td>{{ post_user.name }}</td>
+                <td></td>
+                <td>{{ post_user.body_post }}</td>
+                <td></td>
+                <td>{{ post_user.description }}</td>
+            </tr>
+        </table>
+    <br>
+    <br>
+    <a href="{% url 'post_delete' post_user.id %}" target="_blank">Удалить объявление</a>
+    <br>
+    <br>
+    <a href="{% url 'post_update' post_user.id %}" target="_blank">Редактировать объявление</a>
+    <br>
+    <br>
+    <a href="{% url 'feedbacks_user' post_user.id %}" target="_blank">Отзывы на это объявление</a>
+{% endblock content %}
+</body>
+</html>
